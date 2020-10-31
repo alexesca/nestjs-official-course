@@ -17,8 +17,9 @@ export class CoffeesController {
     }
 
     @Get(':id')
-    getOne(@Param('id') id) {
-        return this.coffeService.findOne(id);
+    getOne(@Param('id') id: number) {
+        console.log(typeof id)
+        return this.coffeService.findOne('' + id);
     }
 
     @Post()
