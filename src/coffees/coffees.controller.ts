@@ -1,23 +1,28 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Query, Res } from '@nestjs/common';
+import { CoffeesService } from './coffees.service';
 
 @Controller('coffees')
 export class CoffeesController {
 
-    @Get('flavors')
+    constructor(
+        private readonly coffeService: CoffeesService
+    ) { }
+
+    @Get()
     @HttpCode(HttpStatus.OK)
-    findAll(@Res() response) {
-        return response.status(200).send("This action returns all the coffee flavors.")
+    findAll(@Query() paginationQuery) {
+        return this.coffeService.findAll();
     }
 
     @Get(':id')
     getOne(@Param('id') id) {
-        return `THis action returns #${id} coffe`
+        return this.coffeService.findOne(id);
     }
 
     @Post()
     @HttpCode(HttpStatus.GONE)
     create(@Body() body) {
-        return body
+        return this.coffeService.create(body);
     }
 
     @Patch(':id')
@@ -25,14 +30,14 @@ export class CoffeesController {
         @Param('id') id: string,
         @Body() body
     ) {
-        return `This action updates #${id} cofee`
+        return this.coffeService.update(id, body);
     }
 
     @Delete(':id')
     delete(
         @Param('id') id: string,
     ) {
-        return `This action deletes #${id} cofee`
+        return this.coffeService.remove(id);
     }
 
 
