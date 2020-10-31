@@ -24,6 +24,7 @@ export class CoffeesController {
     @Post()
     @HttpCode(HttpStatus.CREATED)
     create(@Body() body: CreateCoffeDto) {
+        console.log(body instanceof CreateCoffeDto)
         return this.coffeService.create(body);
     }
 
