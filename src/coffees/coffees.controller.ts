@@ -1,11 +1,12 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Res } from '@nestjs/common';
 
 @Controller('coffees')
 export class CoffeesController {
 
     @Get('flavors')
-    findAll() {
-        return "This action returns all the coffee flavors."
+    @HttpCode(HttpStatus.OK)
+    findAll(@Res() response) {
+        return response.status(200).send("This action returns all the coffee flavors.")
     }
 
     @Get(':id')
