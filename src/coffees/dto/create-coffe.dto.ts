@@ -1,1 +1,5 @@
-export class CreateCoffeDto {}
+export class CreateCoffeDto {
+    readonly name: string;
+    readonly brand: string;
+    readonly flavors: string[]
+}
