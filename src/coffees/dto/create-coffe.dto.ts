@@ -5,6 +5,6 @@ export class CreateCoffeDto {
     readonly name: string;
     @IsString()
     readonly brand: string;
-    @IsString()
+    @IsString({ each: true })
     readonly flavors: string[]
 }
