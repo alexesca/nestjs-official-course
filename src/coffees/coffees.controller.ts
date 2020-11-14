@@ -7,7 +7,7 @@ import { UpdateCoffeDto } from './dto/update-coffe.dto';
 export class CoffeesController {
 
     constructor(
-        private readonly coffeService: CoffeesService
+        private readonly coffeService: CoffeesService,
     ) { }
 
     @Get()
