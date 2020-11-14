@@ -15,7 +15,8 @@ import { Flavor } from './entities/flavor.entity';
     imports: [
         TypeOrmModule.forFeature([
             Coffee,
-            Flavor
+            Flavor,
+            Event
         ])
     ],
     providers: [
