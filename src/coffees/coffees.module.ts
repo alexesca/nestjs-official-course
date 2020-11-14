@@ -2,7 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoffeesController } from './coffees.controller';
 import { CoffeesService } from './coffees.service';
-import { Coffee } from './entites/coffe.entity';
+import { Coffee } from './entities/coffe.entity';
+import { Flavor } from './entities/flavor.entity';
 
 @Module({
     controllers: [
@@ -13,7 +14,8 @@ import { Coffee } from './entites/coffe.entity';
     ],
     imports: [
         TypeOrmModule.forFeature([
-            Coffee
+            Coffee,
+            Flavor
         ])
     ],
     providers: [
