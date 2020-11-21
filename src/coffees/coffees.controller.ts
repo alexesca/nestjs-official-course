@@ -1,4 +1,5 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Query, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Inject, Param, Patch, Post, Query, Request } from '@nestjs/common';
+import { REQUEST } from '@nestjs/core';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffe.dto';
@@ -9,7 +10,12 @@ export class CoffeesController {
 
     constructor(
         private readonly coffeService: CoffeesService,
-    ) { }
+        @Inject(REQUEST) private readonly request: Request
+    ) {
+        console.log(request)
+        console.log("CoffeesController  was instantiated!!!")
+    }
+
 
     @Get()
     @HttpCode(HttpStatus.OK)
