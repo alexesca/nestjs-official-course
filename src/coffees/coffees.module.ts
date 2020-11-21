@@ -6,6 +6,8 @@ import { Coffee } from './entities/coffe.entity';
 import { Flavor } from './entities/flavor.entity';
 import { Event } from './entities/event.entity'
 import { COFFEE_BRANDS } from './coffess.constants';
+import { ConfigModule } from '@nestjs/config';
+import coffeesConfig from './config/coffees.config';
 
 export class ConfigService { }
 export class DevelopmentConfigService { }
@@ -34,7 +36,8 @@ class CoffeBrandsFactory {
             Coffee,
             Flavor,
             Event
-        ])
+        ]),
+        ConfigModule.forFeature(coffeesConfig)
     ],
     providers: [
         CoffeesService,
@@ -48,10 +51,6 @@ class CoffeBrandsFactory {
             inject: [
                 CoffeBrandsFactory
             ]
-        },
-        {
-            provide: ConfigService,
-            useValue: process.env.NODE_ENV === 'production' ? new ProductionConfigService() : new DevelopmentConfigService()
         }
     ]
 })

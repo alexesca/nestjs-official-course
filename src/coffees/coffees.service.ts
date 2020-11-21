@@ -8,6 +8,9 @@ import { Coffee } from './entities/coffe.entity';
 import { Flavor } from './entities/flavor.entity';
 import { Event } from './entities/event.entity';
 import { COFFEE_BRANDS } from './coffess.constants';
+import { ConfigService } from '@nestjs/config';
+import coffeesConfig from './config/coffees.config';
+import { ConfigType } from '@nestjs/config';
 
 
 
@@ -20,9 +23,11 @@ export class CoffeesService {
         @InjectRepository(Flavor)
         private readonly flavorRepository: Repository<Flavor>,
         private readonly connection: Connection,
-        @Inject(COFFEE_BRANDS) coffeeBrands: string[]
+        @Inject(COFFEE_BRANDS) coffeeBrands: string[],
+        private readonly configService: ConfigService,
+        @Inject(coffeesConfig.KEY) coffeesConfiguration: ConfigType<typeof coffeesConfig>
     ) {
-        console.log(coffeeBrands)
+        console.log(coffeesConfiguration.foo)
     }
 
 
